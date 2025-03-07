@@ -10,37 +10,37 @@ from random import randint
 
 class FamilyStructure:
     def __init__(self, last_name):
-        self.last_name = last_name
+        self.last_name = last_name #saves last name
 
-        # example list of members
+        # empty list to start saving data
         self._members = []
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
-        return randint(0, 99999999)
+        return randint(0, 18446744073709551616)
 
     def add_member(self, member):
         # fill this method and update the return
         if "id" not in member:
-            member["id"] = self._generateId()  # Genera un ID único si no existe
-        member["last_name"] = self.last_name  # Asegura que el apellido sea "Jackson"
-        self._members.append(member)  # Agrega el miembro a la lista
-        return member  # Devuelve el miembro agregado
+            member["id"] = self._generateId()  # Generates an ID
+        member["last_name"] = self.last_name  # Lastname will be "Jackson"
+        self._members.append(member)  # Adds member to the list
+        return member  # Returns added member
 
     def delete_member(self, id):
         # fill this method and update the return
         for member in self._members:
             if member["id"] == id:
-                self._members.remove(member)  # Elimina el miembro si se encuentra
-                return True  # Indica que el miembro fue eliminado
-        return False  # Indica que el miembro no se encontró
+                self._members.remove(member)  # Eliminate member if found
+                return True  # If member was eliminated
+        return False  # If member was not found
 
     def get_member(self, id):
         # fill this method and update the return
         for member in self._members:
             if member["id"] == id:
-                return member  # Devuelve el miembro si se encuentra
-        return None  # Devuelve None si el miembro no existe
+                return member  # Returns member if found
+        return None # If member wasn't found
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):

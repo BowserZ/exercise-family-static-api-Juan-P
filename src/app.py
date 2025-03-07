@@ -12,9 +12,10 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 CORS(app)
 
-# create the jackson family object
+# creates the jackson family object
 jackson_family = FamilyStructure("Jackson")
 
+# adds family members
 jackson_family.add_member({
     "first_name": "John",
     "age": 33,
@@ -36,7 +37,7 @@ jackson_family.add_member({
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
-# generate sitemap with all your endpoints
+# generate sitemap with all endpoints
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
